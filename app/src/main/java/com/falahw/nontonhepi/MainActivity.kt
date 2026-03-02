@@ -60,6 +60,10 @@ fun RewardWebView(url: String, modifier: Modifier = Modifier) {
                     loadWithOverviewMode = true
                     useWideViewPort = true
                     cacheMode = WebSettings.LOAD_DEFAULT
+                    
+                    // AGAR VIDEO BISA AUTOPLAY TANPA INTERAKSI USER
+                    mediaPlaybackRequiresUserGesture = false
+                    allowFileAccess = true
                 }
                 
                 loadUrl(url)
