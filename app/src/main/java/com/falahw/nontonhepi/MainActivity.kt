@@ -2,6 +2,8 @@ package com.falahw.nontonhepi
 
 import android.os.Bundle
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
+import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.ComponentActivity
@@ -42,14 +44,25 @@ fun RewardWebView(url: String, modifier: Modifier = Modifier) {
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.MATCH_PARENT
                 )
+                
+                // Konfigurasi Penting agar Firebase & JS berjalan lancar
                 webViewClient = WebViewClient()
-                settings.javaScriptEnabled = true
+                webChromeClient = WebChromeClient() // Dibutuhkan untuk Alert/Popup JS
+                
+                settings.apply {
+                    javaScriptEnabled = true
+                    domStorageEnabled = true // PENTING: Agar ID User tersimpan di HP
+                    databaseEnabled = true
+                    loadWithOverviewMode = true
+                    useWideViewPort = true
+                    cacheMode = WebSettings.LOAD_DEFAULT
+                }
+                
                 loadUrl(url)
             }
         },
         update = { webView ->
-            // Update URL if it changes, but usually loadUrl is handled in factory or via state
-            // For simple case, we don't reload on every recomposition unless url changes
+            // Update URL jika diperlukan
         }
     )
 }
