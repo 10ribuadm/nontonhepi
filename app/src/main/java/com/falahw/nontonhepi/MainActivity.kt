@@ -23,7 +23,7 @@ class MainActivity : ComponentActivity() {
             NontonhepiTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     RewardWebView(
-                        url = "https://falahw.github.io/reward-web/",
+                        url = "https://10ribuadm.github.io/reward-web/",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -48,7 +48,8 @@ fun RewardWebView(url: String, modifier: Modifier = Modifier) {
             }
         },
         update = { webView ->
-            webView.loadUrl(url)
+            // Update URL if it changes, but usually loadUrl is handled in factory or via state
+            // For simple case, we don't reload on every recomposition unless url changes
         }
     )
 }
