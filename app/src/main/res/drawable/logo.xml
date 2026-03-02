@@ -1,0 +1,20 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Badan Pisang (Kuning) -->
+    <path
+        android:pathData="M30,40 Q30,70 50,70 Q70,70 70,40 Q70,35 65,35 Q65,60 50,60 Q35,60 35,35 Q30,35 30,40"
+        android:fillColor="#FFEB3B"/>
+
+    <!-- Tangkai (Cokelat) -->
+    <path
+        android:pathData="M28,38 L32,32 L38,34 L34,40 Z"
+        android:fillColor="#5D4037"/>
+
+    <!-- Mata -->
+    <path android:pathData="M45,45 A1.5,1.5 0 1 1 42,45 A1.5,1.5 0 1 1 45,45" android:fillColor="#000000"/>
+    <path android:pathData="M58,45 A1.5,1.5 0 1 1 55,45 A1.5,1.5 0 1 1 58,45" android:fillColor="#000000"/>
+</vector>
