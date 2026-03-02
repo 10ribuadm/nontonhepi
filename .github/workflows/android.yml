@@ -44,6 +44,20 @@ jobs:
         git commit -m "Auto-upload APK: ${{ steps.date.outputs.date }} [skip ci]"
         git push
 
+    - name: Upload to Appetize.io
+      if: env.APPETIZE_TOKEN != ''
+      env:
+        APPETIZE_TOKEN: ${{ secrets.APPETIZE_API_TOKEN }}
+      run: |
+        RESPONSE=$(curl https://$APPETIZE_TOKEN@api.appetize.io/v1/apps \
+          -F "file=@app/build/outputs/apk/debug/app-debug.apk" \
+          -F "platform=android")
+        
+        PUBLIC_URL=$(echo $RESPONSE | jq -r '.appURL')
+        echo "### 🚀 Emulator Browser Ready!" >> $GITHUB_STEP_SUMMARY
+        echo "Cek aplikasi Anda di sini: $PUBLIC_URL" >> $GITHUB_STEP_SUMMARY
+        echo "Link ini akan aktif selama sesi Appetize Anda tersedia." >> $GITHUB_STEP_SUMMARY
+
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
       with:
